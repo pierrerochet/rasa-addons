@@ -1,0 +1,16 @@
+[tool.poetry]
+authors = ["pierrerochet <pierre-rochet@outlook.fr>"]
+description = ""
+name = "rasa_addons"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^22.3.0"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]

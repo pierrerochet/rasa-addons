@@ -1,0 +1,109 @@
+version: "3.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+
+actions:
+  - action_extract_lang_from_metadata
+  - action_test
+
+slots:
+  lang:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+      action: action_extract_lang_from_metadata
+
+  metadata:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+      action: action_extract_metadata
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+    condition:
+      - type: slot
+        name: lang
+        value: en
+  - text: "Hey! Comment vas-tu?"
+    condition:
+      - type: slot
+        name: lang
+        value: fr
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+    condition:
+    - type: slot
+      name: lang
+      value: en
+  - text: "Voici quelque chose pour vous faire sentir mieux:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+    condition:
+    - type: slot
+      name: lang
+      value: fr
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+    condition:
+    - type: slot
+      name: lang
+      value: en
+  - text: "Comment puis-je vous aider?"
+    condition:
+    - type: slot
+      name: lang
+      value: fr
+
+
+  utter_happy:
+  - text: "Great, carry on!"
+    condition:
+    - type: slot
+      name: lang
+      value: en
+  - text: "Génial, continuez comme ça!"
+    condition:
+    - type: slot
+      name: lang
+      value: fr
+
+  utter_goodbye:
+  - text: "Bye"
+    condition:
+    - type: slot
+      name: lang
+      value: en
+  - text: "Au revoir"
+    condition:
+    - type: slot
+      name: lang
+      value: fr
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+    condition:
+    - type: slot
+      name: lang
+      value: en
+  - text: "Je suis un bot, créé avec Rasa."
+    condition:
+    - type: slot
+      name: lang
+      value: fr
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
