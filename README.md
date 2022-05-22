@@ -28,6 +28,33 @@ pip install rasa_addons
 |rasa_addons.connectors.RestInputWithMetadata|Connector for rest channel without ignoring metadata|
 
 
+### Brokers
+
+|class|description|
+|---|---|
+|rasa_addons.brokers.LoggerEventBroker|Logs all events in json format in file|
+
+
+#### rasa_addons.brokers.LoggerEventBroker
+
+|parameter|description|
+|---|---|
+|type|class path|
+|name|logger name|
+|path|file path where rasa send events|
+|nb_file|maximum number of files for logger rotation|
+
+Above a example:
+
+```yaml
+event_broker:
+  type: rasa_addons.brokers.LoggerEventBroker
+  name: rasa_event
+  path: "./log/rasa.log"
+  nb_file: 10
+```
+
+
 ## Example
 
 Below an example for chatbot using nlu and answers depending on the language.
